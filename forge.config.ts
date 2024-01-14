@@ -3,20 +3,23 @@ import { MakerSquirrel } from '@electron-forge/maker-squirrel';
 import { MakerZIP } from '@electron-forge/maker-zip';
 import { MakerDeb } from '@electron-forge/maker-deb';
 import { MakerRpm } from '@electron-forge/maker-rpm';
-import { AutoUnpackNativesPlugin } from '@electron-forge/plugin-auto-unpack-natives';
+// import { AutoUnpackNativesPlugin } from '@electron-forge/plugin-auto-unpack-natives';
 import { WebpackPlugin } from '@electron-forge/plugin-webpack';
 
 import { mainConfig } from './webpack.main.config';
 import { rendererConfig } from './webpack.renderer.config';
 
+//@ts-ignore - no types, someone should add some one day...
+import ForgeExternalsPlugin from '@timfish/forge-externals-plugin';
+
 const config: ForgeConfig = {
   packagerConfig: {
-    asar: true,
+    // asar: true,
   },
   rebuildConfig: {},
   makers: [new MakerSquirrel({}), new MakerZIP({}, ['darwin']), new MakerRpm({}), new MakerDeb({})],
   plugins: [
-    new AutoUnpackNativesPlugin({}),
+    // new AutoUnpackNativesPlugin({}),
     new WebpackPlugin({
       mainConfig,
       renderer: {
@@ -32,6 +35,10 @@ const config: ForgeConfig = {
           },
         ],
       },
+    }),
+    new ForgeExternalsPlugin({
+      externals: mainConfig.externals,
+      includeDeps: true,
     }),
   ],
 };
