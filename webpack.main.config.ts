@@ -9,6 +9,12 @@ export const mainConfig: Configuration = {
    * that runs in the main process.
    */
   entry: './src/index.ts',
+
+  externals: [
+    'onnxruntime-node',
+    'sharp',
+  ],
+  
   // Put your normal webpack config below here
   module: {
     rules,
