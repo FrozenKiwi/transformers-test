@@ -28,4 +28,20 @@
 
 import './index.css';
 
+const inputElement = document.getElementById('text');
+const outputElement = document.getElementById('output');
+
+console.log("renderer", inputElement);
+
+// 1. Send input data to the worker thread when it changes.
+inputElement.addEventListener('input', async (event) => {
+    // 2. Await the result from the worker thread.
+    //@ts-ignore
+    const result = await window.electronAPI.run(event.target.value);
+
+    // 3. Update the UI.
+    outputElement.innerText = JSON.stringify(result, null, 2);
+});
+
+
 console.log('👋 This message is being logged by "renderer.js", included via webpack');
