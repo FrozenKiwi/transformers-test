@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "@xenova/transformers": "^2.14.0",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "workspace-utils": "0.0.0"
   }
 }

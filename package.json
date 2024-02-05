@@ -3,6 +3,7 @@
   "private": true,
   "devDependencies": {},
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ]
 }
