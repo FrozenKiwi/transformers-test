@@ -25,6 +25,10 @@ class MyClassificationPipeline {
 
 // The run function is used by the `transformers:run` event handler.
 export async function run(_event: any, text: string) {
+    console.log('text', text)
     const classifier = await MyClassificationPipeline.getInstance();
-    return await classifier(text);
+    console.log('classifier', classifier)
+    const result = await classifier(text);
+    console.log('result', result)
+    return result
 }
